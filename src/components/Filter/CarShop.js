@@ -10,6 +10,7 @@ export default function CarShop(){
     const [carShop, setCarShop] = useState([])
 
     console.log('carShop',state.carShop.map)
+    
 
     return(
         <StyleFilterCard>
