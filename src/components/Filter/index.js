@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { MdSchedule, MdCheckBox } from "react-icons/md";
 
 import Favorites from './Favorites'
 import Classes from './Classes'
 import Price from "./Price";
 import CarShop from './CarShop'
+import Time from './Time'
 
 export default function Filter(){
     return(
@@ -17,34 +17,7 @@ export default function Filter(){
                     limpar tudo
                 </div>
             </StyleFilterHeader>
-            <StyleFilterCard>
-                <div className="title">
-                    <MdSchedule className="icon" />
-                    <p>Horário de saída</p>
-                </div>
-                <div className="clear">
-                    limpar
-                </div>
-                <div className="location">
-                    <p>Rodoviária do Tietê - São Paulo - SP <span className="next one">&#62;</span> <span className="next two">&#62;</span> <span className="next three">&#62;</span> <span className="next four">&#62;</span> <span className="next five">&#62;</span></p>
-                </div>
-                <div className="content">
-                    <p>Madrugada (00h:00 - 5h:59)</p>
-                    <MdCheckBox className="iconCheck active"/>
-                </div>
-                <div className="content">
-                    <p>Manhã (06h:00 - 11:59)</p>
-                    <MdCheckBox className="iconCheck active"/>
-                </div>
-                <div className="content">
-                    <p>Tarde (12h:00 - 17:59)</p>
-                    <MdCheckBox className="iconCheck active"/>
-                </div>
-                <div className="content">
-                    <p>Noite (18h:00 - 23:59)</p>
-                    <MdCheckBox className="iconCheck active"/>
-                </div>   
-            </StyleFilterCard>
+            <Time/>
             <Classes/>
             <Price/>
             <Favorites />

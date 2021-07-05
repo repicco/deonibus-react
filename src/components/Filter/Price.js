@@ -3,6 +3,7 @@ import {StyleFilterCard} from './style.js'
 import {useDispatch, useSelector} from 'react-redux'
 import {handleTrips} from '../../store/actions'
 import { useState } from "react";
+import Alert from '../Alert'
 
 export default function Price(){
     const dispatch = useDispatch()
@@ -14,7 +15,7 @@ export default function Price(){
     function handlePrice(value, handle){
         setAlert(false)
         let payload
-        if(handle) {
+        if(handle && maxPrice !== '') {
             setFilterPrice(true)
             const trips = state.trips
 
@@ -32,16 +33,13 @@ export default function Price(){
                     <MdDirectionsBus className="icon" />
                     <p>Preço Máximo</p>
                 </div>
-                <div className="clear">
-                    limpar
-                </div>
                 <div className="content">
                     <div>
                         R$ <input type="number" value={maxPrice} onChange={(el) => setMaxPrice(+el.target.value)}/>
                     </div>
                     { filterPrice ? <MdCheckBox className="iconCheck active" onClick={() => handlePrice(maxPrice, false)}/> : <MdCheckBoxOutlineBlank className="iconCheck" onClick={() => handlePrice(maxPrice, true)}/> }
                 </div>
-                { alert &&  <p className="alert">Sem resultado para pesquisa</p> }
+                <Alert visible={alert} />
             </StyleFilterCard>
     )
 }

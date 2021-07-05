@@ -3,6 +3,7 @@ import {StyleFilterCard} from './style.js'
 import {useDispatch, useSelector} from 'react-redux'
 import {handleTrips, handleTripsOriginal} from '../../store/actions'
 import {useState} from 'react'
+import Alert from '../Alert'
 
 export default function Favorites(){
     const dispatch = useDispatch()
@@ -32,18 +33,12 @@ export default function Favorites(){
                 <div className="title">
                     <MdStars className="icon" />
                     <p>Favoritos</p>
-                </div>
-                {filterFavorites && 
-                    <div className="clear" onClick={() => handleFavorites(false)}>
-                    limpar
-                </div>
-                }
-                
+                </div>                
                 <div className="content">
                     <p>apenas opções favoritas</p>
                     { filterFavorites ? <MdCheckBox className="iconCheck active" onClick={() => handleFavorites(false)}/> : <MdCheckBoxOutlineBlank className="iconCheck" onClick={() => handleFavorites(true)}/> }
                 </div>
-                { alert &&  <p className="alert">Sem resultado para pesquisa</p> }
+                <Alert visible={alert} />
             </StyleFilterCard>
     )
 }

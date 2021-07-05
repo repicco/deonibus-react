@@ -1,12 +1,96 @@
 import styled from 'styled-components'
 import { MdLocationOn } from "react-icons/md";
+import {useDispatch, useSelector} from 'react-redux'
+import {handleTrips} from '../../../store/actions'
+import { useState } from 'react';
 
 export default function Options() {
+    const dispatch = useDispatch()
+    const state = useSelector(state => state.trips) 
+    let objOptions = [
+        {
+            name: 'mais cedo',
+            enable: false,
+            change: 'time',
+        },
+        {
+            name: 'mais tarde',
+            enable: false,
+            change: 'time',
+        },
+        {
+            name: 'menor preço',
+            enable: false,
+            change: 'price',
+        },
+        {
+            name: 'maior preço',
+            enable: false,
+            change: 'price',
+        },
+    ]
+    const [options, setOptions] = useState(objOptions)
+    
+    function handleOptions(check, handle, change){
+        let payload = []
+
+        objOptions.forEach(el => {
+            if(el.name === check){
+                handle ? el.enable = true : el.enable = false
+            }
+        })
+
+        setOptions(objOptions)
+
+        if(handle) {
+            const trips = state.trips
+            if(change === 'price') {
+                const prices = trips.map( el => {
+                    return el.Price
+                 })
+     
+                 if(check === 'maior preço') prices.sort((a, b) => {return b - a})
+                 if(check === 'menor preço') prices.sort((a, b) => {return b - a}).reverse()
+     
+                 prices.forEach(price => {
+                     trips.forEach(trip => {
+                         if(trip.Price === price) {
+                             payload.push(trip)
+                         }
+                     })
+                 })
+            }
+            if(change === 'time') {
+                const times = trips.map( el => {
+                    return +el.departureTime.replace(':', '')
+                })
+
+                if(check === 'mais tarde') times.sort((a, b) => {return b - a})
+                if(check === 'mais cedo') times.sort((a, b) => {return b - a}).reverse()
+
+                times.forEach(time => {
+                    trips.forEach(trip => {
+                        const tripTime = +trip.departureTime.replace(':', '')
+                        if(tripTime === time) {
+                            payload.push(trip)
+                        }
+                    })
+                })
+            }
+                        
+            payload = payload.filter((el, index) => payload.indexOf(el) === index)
+        } else {
+            payload = state.tripsOriginal
+        }
+
+        dispatch(handleTrips(payload))
+    }
+
     return(
         <StyleOptions>
             <div className="lineTop"></div>
             <h3>IDA</h3>
-            <p>seg, 27 de jan 2020</p>
+            <p>seg, 06 de Setembro de 2019</p>
             <div className="location">
                 <MdLocationOn className="icon"/>
                 <div>
@@ -15,10 +99,19 @@ export default function Options() {
                 </div>
             </div>
             <div className="selection">
-                <div>mais cedo <span></span></div>
-                <div>mais tarde <span></span></div>
-                <div>menor preço <span></span></div>
-                <div>maior preço <span></span></div>
+                {
+                    options.map( item => (
+                        <section key={item.name}>
+                            {item.enable
+                                ?
+                                <div className="active" onClick={() => handleOptions(item.name, false, item.change)}>{item.name}<span></span></div>
+                                :
+                                <div onClick={() => handleOptions(item.name, true, item.change)}>{item.name} <span></span></div>
+                            }
+                            
+                        </section>
+                    ))
+                }
             </div>
         </StyleOptions>
     )
@@ -51,23 +144,26 @@ const StyleOptions = styled.section`
             font-size: 3rem;
             color: #008A5D;
         }
-        /* .icon {
-            padding: 0 1rem;
-            font-size: 1.5rem;
-            color: #008A5D;
-        } */
     }
     .selection {
         display: flex;
         width: 100%;
-        div {
+        section {
             width: 33%;
             cursor: pointer;
-            padding: 1rem;
             border-bottom: 3px solid transparent;
+            div {
+                width: 100%;
+                height: 100%;
+            }
             &:hover {
                 border-bottom: 3px solid #008A5D;
             }
+        }
+        .active {
+           background: #008A5D;
+           border-radius: 4px;
+           color: white;
         }
     }
 `

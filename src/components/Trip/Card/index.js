@@ -1,13 +1,31 @@
-import company from '../../../assets/img/company.png'
+import via1001 from '../../../assets/img/1001.png'
+import cometa from '../../../assets/img/cometa.png'
+import catarinense from '../../../assets/img/catarinense.png'
+
 import styled from "styled-components";
 import { MdStarBorder, MdStar } from "react-icons/md";
 
 import {useDispatch, useSelector} from 'react-redux'
 import {handleTrips, handleCarShop} from '../../../store/actions'
+import Modal from '../../Modal'
+import {useState} from 'react'
+import { BsBookmarkPlus } from "react-icons/bs";
+
 
 export default function Card(){
     const dispatch = useDispatch()
     const tripsDom = useSelector(state => state.trips)
+    const [favorite, setFavorite] = useState()
+    const [modalPayload, setModalPayload] = useState([])
+
+    function handleFavorite(){
+        setFavorite(false)
+    }
+
+    async function selectFavorite(trip){
+        await setModalPayload(trip)
+        setFavorite(true)  
+    }
 
     async function changeFavorite(id, handle){
         const payload = tripsDom.trips
@@ -19,6 +37,7 @@ export default function Card(){
         })
 
         await dispatch(handleTrips(payload))
+        handleFavorite()
     }
 
     async function addShop(id, handle){
@@ -40,10 +59,10 @@ export default function Card(){
             return (
             <StyleCard key={trip.objectId}>
                 <div className="left">
+                    {/* {trip.favorite ? <MdStar className="icon active" onClick={() => changeFavorite(trip.objectId, 'del')} /> : <MdStarBorder className="icon" onClick={() => changeFavorite(trip.objectId, 'add')} />} */}
+                    {trip.favorite ? <MdStar className="icon active" onClick={() => changeFavorite(trip.objectId, 'del')}  /> : <MdStarBorder className="icon" onClick={() => selectFavorite([trip])} /> }
                     
-                    {trip.favorite ? <MdStar className="icon active" onClick={() => changeFavorite(trip.objectId, 'del')} /> : <MdStarBorder className="icon" onClick={() => changeFavorite(trip.objectId, 'add')} />}
-                    
-                    <img src={company} alt="" width="100%"/>
+                    <img src={ trip.Company.Name === 'Catarinense' ? catarinense : trip.Company.Name === 'Cometa' ? cometa : via1001} alt="" width="100%"/>
                     <p>{trip.Company.Name}</p>
                 </div>
                 <div className="mid">
@@ -65,12 +84,39 @@ export default function Card(){
                         <p className="currency">{trip.priceMoney}</p>
                         <p className="tax">+ taxas</p>
                     </div>
-                    {trip.carShop ? <button onClick={() => addShop(trip.objectId, 'del')}>REMOVER</button> : <button onClick={() => addShop(trip.objectId, 'add')}>COMPRAR</button>}
+                    {trip.carShop ? <button onClick={() => addShop(trip.objectId, 'del')}>REMOVER</button> : <button onClick={() => addShop(trip.objectId, 'add')}>+CARRINHO</button>}
                 </div>
             </StyleCard>
             )
         })
         }
+        <Modal visible={favorite} title={'Favoritos'} setVisible={handleFavorite}>
+            <StyleFavorite>
+                <p>Deseja adicionar a viagem abaixo aos seus favoritos?</p>                
+                {
+                    modalPayload.length > 0 &&
+                    modalPayload.map(trip => {
+                        return(
+                            <>
+                            <div className="local">
+                                <p>de: <span>{trip.Origin}</span></p>
+                                <p>para: <span>{trip.Destination}</span></p>
+                            </div>
+                            <p className="currency">{trip.priceMoney}</p>
+
+                                <div className="footer">
+                                    <BsBookmarkPlus className="icon"/>
+                                    <div className="btnContent">
+                                        <button onClick={handleFavorite} >Cancelar</button>
+                                        <button onClick={() => changeFavorite(trip.objectId, 'add')} >Adicionar</button>
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    })
+                }             
+            </StyleFavorite>  
+        </Modal>
         </div>
     )
 }
@@ -86,6 +132,10 @@ const StyleCard = styled.section`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        img {
+            max-height: 100px;
+            padding: 0.5rem;
+        }
         .icon {
             font-size: 1.3rem;
             cursor: pointer;
@@ -169,5 +219,46 @@ const StyleCard = styled.section`
                 transition: 0.5s ease;
             }
         }
+    }
+`
+
+const StyleFavorite = styled.div`
+    display: flex;
+    flex-direction: column;
+    p {
+        margin: 0;
+    }
+    .local {
+        p {
+            margin-right: 1rem;
+        }
+    }
+    .currency {
+        margin-bottom: 1rem;
+    }
+    .btnContent {
+        button {
+            padding: 0.2rem 1rem;
+            background: #008A5D;
+            font-size: 1.2rem;
+            color: white;
+            border: 1px solid #008A5D;
+            border-radius: 4px;
+            transition: 0.5s ease;
+            cursor: pointer;
+            margin-right: 1rem;
+            &:hover {
+                color: #008A5D;
+                background: white;
+                transition: 0.5s ease;
+            }
+        }
+    }
+    .icon {
+        font-size: 2rem;
+        margin: 1rem 0;
+    }
+    .footer {
+        flex-direction: column;
     }
 `
