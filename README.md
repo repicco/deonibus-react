@@ -1,47 +1,52 @@
-# deonibus
 
-Layout deonibus
+# Teste deonibus
+
+Teste referente as habilidades de Reactjs + Redux
 
 Inicio: 02/07/2021
 
 Término: 05/07/2021
 
-## Instalações
+
+## Instalações 
 
 Bibliotecas utilizadas:
 
-```bash
+```bash 
     Styled Components
     React-Icons
     Axios
     Redux
 ```
 
-```bash
+
+```bash 
   npm install
   yarn install
 ```
 
+
+    
 ## Tasks Implementadas
 
 - Layout
 - Apresentação de valor
 - Apresentação de data
-  Filtros:
+## Filtros:
 - Classes
 - Horário
 - Preço Máximo
 - Favoritos
 - Carrinho
 - Botões de maior e menor
-  Modal:
+## Modal:
 - Carrinho
 - Favorito
-  Alerta:
+## Alerta:
 - Filtros sem retorno
 
 ## Tasks Pendentes
 
 - Envio fake de payload
 - Horário Input Range Duplo
-- Responsividade
+- Responsividade 
