@@ -1,6 +1,6 @@
 # deonibus
 
-Reactjs + Redux
+Reactjs + Redux.
 
 Inicio: 02/07/2021
 
