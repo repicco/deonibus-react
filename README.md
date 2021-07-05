@@ -1,6 +1,6 @@
-# Teste deonibus
+# deonibus
 
-Teste referente as habilidades de Reactjs + Redux
+Layout deonibus
 
 Inicio: 02/07/2021
 
