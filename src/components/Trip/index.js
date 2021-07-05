@@ -68,10 +68,16 @@ export default function Trip(){
 }
 
 const StyleTripMain = styled.main`
-    width: 63%;
-    margin-right: 1%;
+    width: 92%;
+    @media(min-width: 992px){
+        width: 63%;
+        margin-right: 1%;
+    }
 `
 const StyleTripAside = styled.aside`
-    width: 33%;
-    margin-left: 1%;
+    width: 92%;
+    @media(min-width: 992px){
+        width: 33%;
+        margin-left: 1%;
+    }
 `

@@ -19,4 +19,11 @@ body {
 }
 .deOnibus__container {
   display: flex;
+  flex-direction: column-reverse;
+}
+
+@media (min-width: 992px) {
+  .deOnibus__container {
+    flex-direction: row;
+  }
 }
