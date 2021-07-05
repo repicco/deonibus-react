@@ -14,8 +14,8 @@ body {
 }
 
 .deOnibus {
-  width: 80%;
-  margin-left: 10%;
+  width: 94%;
+  margin-left: 3%;
 }
 .deOnibus__container {
   display: flex;
@@ -23,6 +23,10 @@ body {
 }
 
 @media (min-width: 992px) {
+  .deOnibus {
+    width: 80%;
+    margin-left: 10%;
+  }
   .deOnibus__container {
     flex-direction: row;
   }
