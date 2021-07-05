@@ -11,9 +11,9 @@ export const StyleFilterCard = styled.div`
     .title {
         display: flex;
         align-items: center;
-        font-size: 1.2rem;
+        font-size: clamp(16px, 2vw, 20px);
         .icon {
-            font-size: 2rem;
+            font-size: clamp(24px, 2vw, 32px);
             margin-right: 1rem;
         }
     }
@@ -32,7 +32,7 @@ export const StyleFilterCard = styled.div`
         margin: 1rem 0;
     }
     .iconCheck {
-            font-size: 1.5rem;
+        font-size: clamp(18px, 2vw, 24px);
         }
     .iconCheck.active {
         color: #008A5D;
@@ -42,7 +42,7 @@ export const StyleFilterCard = styled.div`
         display: flex;
         align-items: center;
         .next {
-            font-size: 1.5rem;
+            font-size: clamp(18px, 2vw, 24px);
         }
         .next.one {
             opacity: 0.2;
@@ -77,7 +77,7 @@ export const StyleFilterCard = styled.div`
         div {
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
+            font-size: clamp(11px, 2vw, 14px);
             .data {
                 color: #008A5D;
                 font-weight: bold;

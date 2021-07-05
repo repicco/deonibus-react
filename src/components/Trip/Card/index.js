@@ -123,50 +123,61 @@ export default function Card(){
 
 const StyleCard = styled.section`
     display: flex;
+    flex-direction: column;
     margin-top: 1rem;
     background: white;
+    border-radius: 8px;
     padding: 0.5rem 0;
+    @media(min-width: 920px){
+        flex-direction: row;
+    }
     .left {
-        width: 20%;
-        padding: 0 1rem;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
         img {
-            max-height: 100px;
-            padding: 0.5rem;
+            max-width: 100px;
+            height: 100%;
         }
-        .icon {
-            font-size: 1.3rem;
-            cursor: pointer;
-        }
-        .icon.active {
-            color: orange;
-        }
-        p {
-            font-size: 0.8rem;
+        @media(min-width: 920px){
+            width: 20%;
+            padding: 0 1rem;
+            flex-direction: column;
+            justify-content: space-between;
+            img {
+                height: auto;
+                padding: 0.5rem;
+            }
+            .icon {
+                font-size: 1.3rem;
+                cursor: pointer;
+            }
+            .icon.active {
+                color: orange;
+            }
+            p {
+                font-size: 0.8rem;
+            }
         }
     }
     .mid {
-        width: 55%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        padding: 0 1rem;
+        width: 100%;
+        padding: 0.5rem 0;
         .time {
             display: flex;
-            align-items: flex-end;
+            justify-content: space-around;
             p {
                 color: #808080;
-                font-size: 1.2rem;
+                font-size: clamp(16px,2vw,18px);
                 &:first-child {
                     color: black;
                     font-weight: bold;
                 }
             }
             span {
-                margin: 0 1rem 0.5rem 1rem;
-                width: 69px;
+                margin: 0.5rem 1rem 0rem 1rem;
+                width: 33px;
                 height: 2px;
                 background: #808080;
             }
@@ -174,6 +185,7 @@ const StyleCard = styled.section`
         .local {
             color: #808080;
             margin: 0.5rem 0;
+            align-self: center;
             span {
                 color: black;
                 font-weight: bold;
@@ -182,24 +194,55 @@ const StyleCard = styled.section`
         h4 {
             color: #2558A3;
             font-weight: 400;
+            align-self: center;
         }
+        @media(min-width: 920px){
+            width: 55%;
+            justify-content: space-between;
+            padding: 0 1rem;
+            .time {
+            display: flex;
+            align-items: flex-end;
+                span {
+                    margin: 0 1rem 0.5rem 1rem;
+                    width: 69px;
+                }
+            }
+            .local {
+                margin: 0.5rem 0;
+                align-self: auto;
+            }
+            h4 {
+                align-self: auto;
+            }
+        }
+        
     }
     .right {
-        width: 25%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-end;
-        padding: 0 1rem;
-        color: #008A5D;       
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        color: #008A5D;
         .currency {
-            font-size: 1.2rem;
+            font-size: clamp(16px,2vw,18px);
             font-weight: bold;
             span {
                 font-size: 0.9rem;
                 font-weight: bold;
             }
         }
+        @media(min-width: 920px){
+            width: 25%;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 1rem;
+            .currency {
+
+            }
+        }     
+
         .tax {
             color: #808080;
             text-align: right;
@@ -207,7 +250,7 @@ const StyleCard = styled.section`
         button {
             padding: 0.2rem 1rem;
             background: #008A5D;
-            font-size: 1.2rem;
+            font-size: clamp(16px,2vw,18px);
             color: white;
             border: 1px solid #008A5D;
             border-radius: 4px;

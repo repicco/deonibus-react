@@ -129,8 +129,8 @@ const StyleOptions = styled.section`
         color: #008A5D;
     }
     .location {
-        text-align: left;
         display: flex;
+        flex-direction: column;
         align-items: center;
         margin: 1rem 0;
         p {
@@ -143,6 +143,11 @@ const StyleOptions = styled.section`
             margin: 0 1rem;
             font-size: 3rem;
             color: #008A5D;
+        }
+        @media(min-width: 920px){
+            text-align: left;
+            display: flex;
+            flex-direction: row;
         }
     }
     .selection {
