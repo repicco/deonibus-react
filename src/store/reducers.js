@@ -6,7 +6,6 @@ const initialState = {
     carShop: []
 }
 
-
 const trips = (state = initialState, action) => {
     switch(action.type){
         case 'HANDLE_TRIPS':
@@ -19,7 +18,6 @@ const trips = (state = initialState, action) => {
             return state
     }
 }
-
 
 export const reducers = combineReducers({trips})
 

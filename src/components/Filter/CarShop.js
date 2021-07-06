@@ -87,12 +87,10 @@ export default function CarShop(){
                                         <p>De: <span className="data">{trip.Origin}</span></p>
                                         <p className="time">Parte: <span className="data">{trip.departureTime}</span></p>
                                     </div>
-                                    |
                                     <div>                                    
                                         <p>Para: <span className="data">{trip.Destination}</span></p>
                                         <p className="time">Chega: <span className="data">{trip.arrivalTime}</span></p>
                                     </div>
-                                    |
                                     <div>
                                         <p>Empresa: <span className="data">{trip.Company.Name}</span></p>
                                         <p className="money">{trip.priceMoney}</p> 

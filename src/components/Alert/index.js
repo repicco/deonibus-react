@@ -53,9 +53,11 @@ const StyleAlert = styled.div`
     z-index: 99;
     cursor: pointer;
     section {
-        margin: 2rem 3rem;
-        border-radius: 8px;
-        background: white;
+        margin: 2rem 0 2rem;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        background: #FFEFD5;
+        box-shadow: 1px 1px 1px 1px black;
         padding: 1rem;
         height: 100px;
         div {

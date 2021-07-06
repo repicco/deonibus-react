@@ -99,7 +99,7 @@ export const StyleFilterCard = styled.div`
         }
         div {
             display: flex;
-            margin: 0.5rem 0.5rem;
+            margin: 0.5rem 0rem;
             .data {
                 color: #008A5D;
             }
@@ -116,6 +116,9 @@ export const StyleFilterCard = styled.div`
                 border-radius: 4px;
                 color: white;
             }
+        }
+        @media(min-width: 920px){
+            margin: 0.5rem 0.5rem;
         }
     }
     .btnContent {
@@ -134,11 +137,15 @@ export const StyleFilterCard = styled.div`
         border-radius: 4px;
         transition: 0.5s ease;
         cursor: pointer;
-        margin-right: 1rem;
+        margin-bottom: 0.5rem;
         &:hover {
             color: #008A5D;
             background: white;
             transition: 0.5s ease;
+        }
+        @media(min-width: 920px){
+            margin-bottom: 0;
+            margin-right: 1rem;
         }
     }
     .finish {

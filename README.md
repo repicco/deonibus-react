@@ -27,6 +27,7 @@ Bibliotecas utilizadas:
 - Layout
 - Apresentação de valor
 - Apresentação de data
+- Responsividade
 
 ## Filtros:
 
@@ -50,4 +51,3 @@ Bibliotecas utilizadas:
 
 - Envio fake de payload
 - Horário Input Range Duplo
-- Responsividade

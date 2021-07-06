@@ -134,6 +134,7 @@ const StyleCard = styled.section`
     .left {
         display: flex;
         justify-content: space-around;
+        margin: 0.5rem 0;
         img {
             max-width: 100px;
             height: 100%;

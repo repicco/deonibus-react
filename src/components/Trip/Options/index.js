@@ -160,6 +160,7 @@ const StyleOptions = styled.section`
             div {
                 width: 100%;
                 height: 100%;
+                padding: 0.5rem;
             }
             &:hover {
                 border-bottom: 3px solid #008A5D;
@@ -171,4 +172,5 @@ const StyleOptions = styled.section`
            color: white;
         }
     }
+    
 `

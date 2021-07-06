@@ -65,13 +65,17 @@ const StyleModal = styled.div`
     section {
         z-index: 99;
         color: #008A5D;
-        margin: 2rem 3rem;
+        margin: 2rem 0;
         border-radius: 8px;
         background: white;
         padding: 1rem;
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.7);
+        overflow-y: auto;
+        height: 94%;
+        width: 80%;
         div {
             display: flex;
+            flex-direction: column;
             align-items: center;
             .icon {
                 font-size: 2rem;
@@ -81,6 +85,17 @@ const StyleModal = styled.div`
         p {
             margin-top: 1rem;
             color: black;
+        }
+    }
+    @media(min-width: 920px){
+        section {
+            margin: 2rem 3rem;
+            height: fit-content;
+            max-height: 90%;
+            width: auto;
+            div {
+                flex-direction: row;
+            }
         }
     }
 `
